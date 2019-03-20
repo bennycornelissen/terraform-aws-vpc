@@ -17,3 +17,10 @@ Icon
 # Linux settings
 *~
 *.swp
+
+# This repo
+.terraform
+*.tfstate*
+.kitchen
+terraform.tfstate
+terraform.tfvars
