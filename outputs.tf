@@ -1,7 +1,7 @@
 # Module outputs that are strings
 output "outputs" {
   value = {
-    aws_region             = "${var.aws_region}"
+    aws_region             = "${data.aws_region.current.name}"
     data_route_table_id    = "${aws_route_table.data.id}"
     env_name               = "${var.env_name}"
     internet_gateway_id    = "${aws_internet_gateway.default.id}"
