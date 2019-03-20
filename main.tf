@@ -61,15 +61,13 @@ resource "aws_db_subnet_group" "rds" {
   subnet_ids  = ["${aws_subnet.data.*.id}"]
 }
 
-/*
-
-  Routing:
-  - Gateways & Routers
-  - Route tables
-  - Route table entries
-  - Route table associations
-
-*/
+#
+# Routing:
+# - Gateways & Routers
+# - Route tables
+# - Route table entries
+# - Route table associations
+#
 
 # Internet Gateway
 resource "aws_internet_gateway" "default" {
@@ -147,6 +145,14 @@ resource "aws_route_table_association" "public" {
 
   subnet_id      = "${element(aws_subnet.public.*.id, count.index)}"
   route_table_id = "${aws_route_table.public.id}"
+}
+
+# Route table association for Public networks
+resource "aws_route_table_association" "private" {
+  count = "${var.zone_count}"
+
+  subnet_id      = "${element(aws_subnet.private.*.id, count.index)}"
+  route_table_id = "${aws_route_table.private.id}"
 }
 
 # Route table association for Data networks
