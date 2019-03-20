@@ -37,3 +37,24 @@ This Terraform module creates a basic 3-tier VPC with routing.
 | outputs | Module outputs that are strings |
 | outputs-list | Module outputs that are lists |
 
+The outputs in this module are maps. Wrapping your outputs in maps is especially useful for 'chaining' outputs (module -> plan -> state), and makes for a setup where a change in module output (adding/removing) doesn't require one to update all implementation plans where that module is used.
+
+| Name | Key | Type | Description |
+|------|----------|-----|-------------|
+| outputs | | map | Module outputs that are strings |
+| | aws_region | string ||
+| | data_route_table_id | string ||
+| | env_name | string ||
+| | internet_gateway_id | string ||
+| | nat_gateway_eip | string ||
+| | private_route_table_id | string ||
+| | rds_subnet_group_names | string ||
+| | vpc_cidr_block | string ||
+| | vpc_id | string ||
+| | zone_count  | string ||
+| outputs_list | | map | Module outputs that are lists |
+| | data_subnet_cidr_blocks | list ||
+| | data_subnet_ids | list ||
+| | private_subnet_ids | list ||
+| | public_subnet_ids | list ||
+
