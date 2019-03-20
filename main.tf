@@ -98,6 +98,22 @@ resource "aws_nat_gateway" "default" {
   depends_on = ["aws_internet_gateway.default"]
 }
 
+# Public route table:
+resource "aws_route_table" "public" {
+  vpc_id = "${aws_vpc.default.id}"
+
+  tags {
+    Name = "${var.env_name} - public route table"
+  }
+}
+
+# Default rule for public table, sending all unknown destinations to the internet gateway
+resource "aws_route" "public_internet_access" {
+  route_table_id         = "${aws_route_table.public.id}"
+  destination_cidr_block = "0.0.0.0/0"
+  gateway_id             = "${aws_internet_gateway.default.id}"
+}
+
 # Private route table
 resource "aws_route_table" "private" {
   vpc_id = "${aws_vpc.default.id}"
@@ -112,22 +128,6 @@ resource "aws_route" "private_internet_access" {
   route_table_id         = "${aws_route_table.private.id}"
   destination_cidr_block = "0.0.0.0/0"
   nat_gateway_id         = "${aws_nat_gateway.default.id}"
-}
-
-# Public route table
-resource "aws_route_table" "public" {
-  vpc_id = "${aws_vpc.default.id}"
-
-  tags {
-    Name = "${var.env_name} - public route table"
-  }
-}
-
-# Default rule for public table, sending all unknown destinations to the internet gateway
-resource "aws_route" "public_internet_access" {
-  route_table_id         = "${aws_route_table.public.id}"
-  destination_cidr_block = "0.0.0.0/0"
-  gateway_id             = "${aws_internet_gateway.default.id}"
 }
 
 # Data layer route table
@@ -147,7 +147,7 @@ resource "aws_route_table_association" "public" {
   route_table_id = "${aws_route_table.public.id}"
 }
 
-# Route table association for Public networks
+# Route table association for Private networks
 resource "aws_route_table_association" "private" {
   count = "${var.zone_count}"
 
