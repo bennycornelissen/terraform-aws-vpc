@@ -52,7 +52,7 @@ The outputs in this module are maps. Wrapping your outputs in maps is especially
 | | vpc_cidr_block | string ||
 | | vpc_id | string ||
 | | zone_count  | string ||
-| outputs_list | | map | Module outputs that are lists |
+| outputs-list | | map | Module outputs that are lists |
 | | data_subnet_cidr_blocks | list ||
 | | data_subnet_ids | list ||
 | | private_subnet_ids | list ||
