@@ -42,19 +42,19 @@ The outputs in this module are maps. Wrapping your outputs in maps is especially
 | Name | Key | Type | Description |
 |------|----------|-----|-------------|
 | outputs | | map | Module outputs that are strings |
-| | aws_region | string ||
-| | data_route_table_id | string ||
-| | env_name | string ||
-| | internet_gateway_id | string ||
-| | nat_gateway_eip | string ||
-| | private_route_table_id | string ||
-| | rds_subnet_group_names | string ||
-| | vpc_cidr_block | string ||
-| | vpc_id | string ||
-| | zone_count  | string ||
+| | aws\_region | string ||
+| | data\_route\_table\_id | string ||
+| | env\_name | string ||
+| | internet\_gateway\_id | string ||
+| | nat\_gateway\_eip | string ||
+| | private\_route\_table\_id | string ||
+| | rds\_subnet\_group\_names | string ||
+| | vpc\_cidr\_block | string ||
+| | vpc\_id | string ||
+| | zone\_count  | string ||
 | outputs-list | | map | Module outputs that are lists |
-| | data_subnet_cidr_blocks | list ||
-| | data_subnet_ids | list ||
-| | private_subnet_ids | list ||
-| | public_subnet_ids | list ||
+| | data\_subnet\_cidr\_blocks | list ||
+| | data\_subnet\_ids | list ||
+| | private\_subnet\_ids | list ||
+| | public\_subnet\_ids | list ||
 
