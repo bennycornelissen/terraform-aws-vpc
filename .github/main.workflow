@@ -45,7 +45,7 @@ action "terraform-validate-basic" {
 }
 
 action "terraform-plan-basic" {
-  uses = "bennycornelissen/terraform-github-actions/plan@verbose_comments"
+  uses = "hashicorp/terraform-github-actions/plan@v0.1.3"
   needs = "terraform-validate-basic"
   secrets = [
     "GITHUB_TOKEN",
@@ -85,7 +85,7 @@ action "terraform-validate-advanced" {
 }
 
 action "terraform-plan-advanced" {
-  uses = "bennycornelissen/terraform-github-actions/plan@verbose_comments"
+  uses = "hashicorp/terraform-github-actions/plan@v0.1.3"
   needs = "terraform-validate-advanced"
   secrets = [
     "GITHUB_TOKEN",

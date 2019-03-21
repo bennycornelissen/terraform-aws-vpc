@@ -18,6 +18,24 @@ This Terraform module creates a basic 3-tier VPC with routing.
   - An EIP is associated with the NAT gateway
   - To keep cost (and EIP allocation) in check, only 1 NAT gateway is created in the first public subnet
 
+## Testing
+
+This repository uses [Github Actions](https://github.com/features/actions) for automatic CI. The pipelines are run when a PR is created. However, for external PRs you will have to set this up yourself.
+
+## Testing locally
+
+If you provide your own AWS credentials (the usual environment variables), you can run the pipeline locally using [Act](https://github.com/nektos/act). A JSON file is provided to mock some necessary API responses. To run the pipelines, execute the following:
+
+```
+$ act -r -p -e .github/pr-filter-response.json pull_request
+```
+
+Customization options:
+
+- In order to have automatic local CI, add the `-w` flag. It will watch the directory for changes, and run the pipeline whenever anything changes.
+- If you don't want to send your comments to https://httpstat.us/200, you can run your HTTP echo service (for instance `hashicorp/http-echo`) and update the JSON file accordingly.
+
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
