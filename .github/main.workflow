@@ -1,7 +1,8 @@
 workflow "Terraform" {
-  resolves = "terraform-validate"
+  resolves = "terraform-plan"
   on = "push"
 }
+
 
 action "terraform-fmt-module" {
   uses = "hashicorp/terraform-github-actions/fmt@v0.1.3"
@@ -36,3 +37,19 @@ action "terraform-validate" {
     TF_ACTION_WORKING_DIR = "examples/basic-implementation"
   }
 }
+
+action "master-branch-only" {
+  uses = "actions/bin/filter@master"
+  needs = "terraform-validate"
+  args = "branch master"
+}
+
+action "terraform-plan" {
+  uses = "hashicorp/terraform-github-actions/plan@v0.1.3"
+  needs = "master-branch-only"
+  secrets = ["GITHUB_TOKEN"]
+  env = {
+    TF_ACTION_WORKING_DIR = "examples/basic-implementation"
+  }
+}
+
