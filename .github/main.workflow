@@ -1,5 +1,5 @@
-workflow "Terraform Module Pipelines" {
-  resolves = "terraform-fmt-module"
+workflow "Terraform Pipeline" {
+  resolves = ["terraform-fmt-module","terraform-plan-basic","terraform-plan-advanced"]
   on = "pull_request"
 }
 
@@ -15,11 +15,6 @@ action "terraform-fmt-module" {
   env = {
     TF_ACTION_WORKING_DIR = "."
   }
-}
-
-workflow "Terraform Basic Plan Pipeline" {
-  resolves = "terraform-plan-basic"
-  on = "pull_request"
 }
 
 action "terraform-fmt-basic" {
@@ -62,10 +57,6 @@ action "terraform-plan-basic" {
   }
 }
 
-workflow "Terraform Advanced Plan Pipeline" {
-  resolves = "terraform-plan-advanced"
-  on = "pull_request"
-}
 action "terraform-fmt-advanced" {
   uses = "hashicorp/terraform-github-actions/fmt@v0.1.3"
   needs = "filter-to-pr-open-synced"
