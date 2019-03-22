@@ -9,7 +9,7 @@ action "filter-to-pr-open-synced" {
 }
 
 action "terraform-fmt-module" {
-  uses = "hashicorp/terraform-github-actions/fmt@v0.1.3"
+  uses = "bennycornelissen/terraform-github-actions/fmt@v0.1.3-benny"
   needs = "filter-to-pr-open-synced"
   secrets = ["GITHUB_TOKEN"]
   env = {
@@ -18,7 +18,7 @@ action "terraform-fmt-module" {
 }
 
 action "terraform-fmt-basic" {
-  uses = "hashicorp/terraform-github-actions/fmt@v0.1.3"
+  uses = "bennycornelissen/terraform-github-actions/fmt@v0.1.3-benny"
   needs = "filter-to-pr-open-synced"
   secrets = ["GITHUB_TOKEN"]
   env = {
@@ -27,7 +27,7 @@ action "terraform-fmt-basic" {
 }
 
 action "terraform-init-basic" {
-  uses = "hashicorp/terraform-github-actions/init@v0.1.3"
+  uses = "bennycornelissen/terraform-github-actions/init@v0.1.3-benny"
   needs = "terraform-fmt-basic"
   secrets = ["GITHUB_TOKEN"]
   env = {
@@ -36,7 +36,7 @@ action "terraform-init-basic" {
 }
 
 action "terraform-validate-basic" {
-  uses = "hashicorp/terraform-github-actions/validate@v0.1.3"
+  uses = "bennycornelissen/terraform-github-actions/validate@v0.1.3-benny"
   needs = "terraform-init-basic"
   secrets = ["GITHUB_TOKEN"]
   env = {
@@ -45,7 +45,7 @@ action "terraform-validate-basic" {
 }
 
 action "terraform-plan-basic" {
-  uses = "bennycornelissen/terraform-github-actions/plan@verbose_comments"
+  uses = "bennycornelissen/terraform-github-actions/plan@v0.1.3-benny"
   needs = "terraform-validate-basic"
   secrets = [
     "GITHUB_TOKEN",
@@ -58,7 +58,7 @@ action "terraform-plan-basic" {
 }
 
 action "terraform-fmt-advanced" {
-  uses = "hashicorp/terraform-github-actions/fmt@v0.1.3"
+  uses = "bennycornelissen/terraform-github-actions/fmt@v0.1.3-benny"
   needs = "filter-to-pr-open-synced"
   secrets = ["GITHUB_TOKEN"]
   env = {
@@ -67,7 +67,7 @@ action "terraform-fmt-advanced" {
 }
 
 action "terraform-init-advanced" {
-  uses = "hashicorp/terraform-github-actions/init@v0.1.3"
+  uses = "bennycornelissen/terraform-github-actions/init@v0.1.3-benny"
   needs = "terraform-fmt-advanced"
   secrets = ["GITHUB_TOKEN"]
   env = {
@@ -76,7 +76,7 @@ action "terraform-init-advanced" {
 }
 
 action "terraform-validate-advanced" {
-  uses = "hashicorp/terraform-github-actions/validate@v0.1.3"
+  uses = "bennycornelissen/terraform-github-actions/validate@v0.1.3-benny"
   needs = "terraform-init-advanced"
   secrets = ["GITHUB_TOKEN"]
   env = {
@@ -85,7 +85,7 @@ action "terraform-validate-advanced" {
 }
 
 action "terraform-plan-advanced" {
-  uses = "bennycornelissen/terraform-github-actions/plan@verbose_comments"
+  uses = "bennycornelissen/terraform-github-actions/plan@v0.1.3-benny"
   needs = "terraform-validate-advanced"
   secrets = [
     "GITHUB_TOKEN",
