@@ -29,7 +29,7 @@ resource "aws_subnet" "private" {
 
   vpc_id                  = "${aws_vpc.default.id}"
   cidr_block              = "10.${var.vpc_cidr_second_octet}.${var.vpc_private_subnet_prefix}${count.index +1}.0/24"
-  map_public_ip_on_launch = "true"
+  map_public_ip_on_launch = "false"
   availability_zone       = "${element(data.aws_availability_zones.available.names, count.index)}"
 
   tags = {
@@ -43,7 +43,7 @@ resource "aws_subnet" "data" {
 
   vpc_id                  = "${aws_vpc.default.id}"
   cidr_block              = "10.${var.vpc_cidr_second_octet}.${var.vpc_data_subnet_prefix}${count.index +1}.0/24"
-  map_public_ip_on_launch = "true"
+  map_public_ip_on_launch = "false"
   availability_zone       = "${element(data.aws_availability_zones.available.names, count.index)}"
 
   tags = {
