@@ -35,7 +35,10 @@ Customization options:
 - In order to have automatic local CI, add the `-w` flag. It will watch the directory for changes, and run the pipeline whenever anything changes.
 - If you don't want to send your comments to https://httpstat.us/200, you can run your HTTP echo service (for instance `hashicorp/http-echo`) and update the JSON file accordingly.
 
+## Generate Documentation
+A part of this README is generated using [Terraform-docs](https://github.com/segmentio/terraform-docs). You can regenerate this auto-generated section at will by running the `generate-readme` script included in this repository, granted that `sed` and `terraform-docs` are present.
 
+<!-- TFDOCS_START -->
 ## Inputs
 
 | Name | Description | Type | Default | Required |
@@ -45,7 +48,7 @@ Customization options:
 | vpc\_data\_subnet\_prefix |  | string | `"3"` | no |
 | vpc\_private\_subnet\_prefix |  | string | `"2"` | no |
 | vpc\_public\_subnet\_prefix |  | string | `"1"` | no |
-| zone\_count | AWS region to useAmount of AWS zones we want to use for this VPC | string | `"1"` | no |
+| zone\_count | Amount of AWS zones we want to use for this VPC | string | `"1"` | no |
 
 ## Outputs
 
@@ -54,6 +57,7 @@ Customization options:
 | outputs | Module outputs that are strings |
 | outputs-list | Module outputs that are lists |
 
+<!-- TFDOCS_END -->
 The outputs in this module are maps. Wrapping your outputs in maps is especially useful for 'chaining' outputs (module -> plan -> state), and makes for a setup where a change in module output (adding/removing) doesn't require one to update all implementation plans where that module is used.
 
 | Name | Key | Type | Description |
