@@ -1,7 +1,6 @@
 # Name our environment. Used for tagging in AWS
 variable "env_name" {}
 
-# AWS region to use
 # Amount of AWS zones we want to use for this VPC
 variable "zone_count" {
   default = 1
