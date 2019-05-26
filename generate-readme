@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+set -e
+set -o pipefail
+
+# Sed on MacOS needs different args
+if [[ "$(uname)" == "Darwin" ]]; then
+  _SEDOPTS="-i.tmp"
+else
+  _SEDOPTS="-i"
+fi
+
+# Find the beginning of our generated docs block
+line_number=$(grep -n TFDOCS_START README.md | cut -d':' -f1)
+
+# Remove old generated docs
+sed $_SEDOPTS '/TFDOCS_START/,/TFDOCS_END/{//!d;};' README.md
+
+# Insert new docs in the right place
+terraform-docs --sort-inputs-by-required --with-aggregate-type-defaults  md table . | sed $_SEDOPTS "${line_number}r /dev/stdin" README.md
+
+# If a temporary README was created (by sed on MacOS), clean up
+[[ -r "README.md.tmp" ]] && rm README.md.tmp
