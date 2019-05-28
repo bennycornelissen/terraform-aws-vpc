@@ -43,12 +43,12 @@ A part of this README is generated using [Terraform-docs](https://github.com/seg
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| env\_name | Name our environment. Used for tagging in AWS | string | n/a | yes |
-| vpc\_cidr\_second\_octet |  | string | `"0"` | no |
-| vpc\_data\_subnet\_prefix |  | string | `"3"` | no |
-| vpc\_private\_subnet\_prefix |  | string | `"2"` | no |
-| vpc\_public\_subnet\_prefix |  | string | `"1"` | no |
-| zone\_count | Amount of AWS zones we want to use for this VPC | string | `"1"` | no |
+| env\_name | Name for the environment you are creating (e.g. 'lab' or 'prod'). Used for tagging in AWS | string | n/a | yes |
+| vpc\_cidr\_second\_octet | Second octet of the CIDR block for the VPC (10.x.0.0/16) | string | `"0"` | no |
+| vpc\_data\_subnet\_prefix | Prefix for data subnets, used in the 3rd octet (10.0.xx.0/24) | string | `"3"` | no |
+| vpc\_private\_subnet\_prefix | Prefix for private subnets, used in the 3rd octet (10.0.xx.0/24) | string | `"2"` | no |
+| vpc\_public\_subnet\_prefix | Prefix for public subnets, used in the 3rd octet (10.0.xx.0/24) | string | `"1"` | no |
+| zone\_count | Amount of Availability Zones (AZs) we want to use | string | `"1"` | no |
 
 ## Outputs
 
