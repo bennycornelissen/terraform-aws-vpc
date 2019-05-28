@@ -1,16 +1,15 @@
-# Name our environment. Used for tagging in AWS
-variable "env_name" {}
-
-# Amount of AWS zones we want to use for this VPC
-variable "zone_count" {
-  default = 1
-}
-
-# Get current AWS region
 data "aws_region" "current" {}
 
-# Get available AZs from AWS
 data "aws_availability_zones" "available" {}
+
+variable "env_name" {
+  description = "Name for the environment you are creating (e.g. 'lab' or 'prod'). Used for tagging in AWS"
+}
+
+variable "zone_count" {
+  description = "Amount of Availability Zones (AZs) we want to use"
+  default     = 1
+}
 
 #
 # Our VPC network is configured as follows:
@@ -25,17 +24,21 @@ data "aws_availability_zones" "available" {}
 #
 
 variable vpc_cidr_second_octet {
-  default = 0
+  description = "Second octet of the CIDR block for the VPC (10.x.0.0/16)"
+  default     = 0
 }
 
 variable vpc_public_subnet_prefix {
-  default = 1
+  description = "Prefix for public subnets, used in the 3rd octet (10.0.xx.0/24)"
+  default     = 1
 }
 
 variable vpc_private_subnet_prefix {
-  default = 2
+  description = "Prefix for private subnets, used in the 3rd octet (10.0.xx.0/24)"
+  default     = 2
 }
 
 variable vpc_data_subnet_prefix {
-  default = 3
+  description = "Prefix for data subnets, used in the 3rd octet (10.0.xx.0/24)"
+  default     = 3
 }
