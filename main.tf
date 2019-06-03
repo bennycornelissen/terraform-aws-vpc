@@ -1,6 +1,6 @@
 # VPC
 resource "aws_vpc" "default" {
-  cidr_block           = "10.${var.vpc_cidr_second_octet}.0.0/16"
+  cidr_block           = "${var.vpc_cidr}"
   enable_dns_support   = "true"
   enable_dns_hostnames = "true"
 
@@ -14,7 +14,7 @@ resource "aws_subnet" "public" {
   count = "${var.zone_count}"
 
   vpc_id                  = "${aws_vpc.default.id}"
-  cidr_block              = "10.${var.vpc_cidr_second_octet}.${var.vpc_public_subnet_prefix}${count.index +1}.0/24"
+  cidr_block              = "${cidrsubnet(var.vpc_cidr, 8, count.index + var.vpc_public_subnet_offset)}"
   map_public_ip_on_launch = "true"
   availability_zone       = "${element(data.aws_availability_zones.available.names, count.index)}"
 
@@ -28,7 +28,7 @@ resource "aws_subnet" "private" {
   count = "${var.zone_count}"
 
   vpc_id                  = "${aws_vpc.default.id}"
-  cidr_block              = "10.${var.vpc_cidr_second_octet}.${var.vpc_private_subnet_prefix}${count.index +1}.0/24"
+  cidr_block              = "${cidrsubnet(var.vpc_cidr, 8, count.index + var.vpc_private_subnet_offset)}"
   map_public_ip_on_launch = "false"
   availability_zone       = "${element(data.aws_availability_zones.available.names, count.index)}"
 
@@ -42,7 +42,7 @@ resource "aws_subnet" "data" {
   count = "${var.zone_count}"
 
   vpc_id                  = "${aws_vpc.default.id}"
-  cidr_block              = "10.${var.vpc_cidr_second_octet}.${var.vpc_data_subnet_prefix}${count.index +1}.0/24"
+  cidr_block              = "${cidrsubnet(var.vpc_cidr, 8, count.index + var.vpc_data_subnet_offset)}"
   map_public_ip_on_launch = "false"
   availability_zone       = "${element(data.aws_availability_zones.available.names, count.index)}"
 
