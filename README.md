@@ -44,10 +44,10 @@ A part of this README is generated using [Terraform-docs](https://github.com/seg
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | env\_name | Name for the environment you are creating (e.g. 'lab' or 'prod'). Used for tagging in AWS | string | n/a | yes |
-| vpc\_cidr\_second\_octet | Second octet of the CIDR block for the VPC (10.x.0.0/16) | string | `"0"` | no |
-| vpc\_data\_subnet\_prefix | Prefix for data subnets, used in the 3rd octet (10.0.xx.0/24) | string | `"3"` | no |
-| vpc\_private\_subnet\_prefix | Prefix for private subnets, used in the 3rd octet (10.0.xx.0/24) | string | `"2"` | no |
-| vpc\_public\_subnet\_prefix | Prefix for public subnets, used in the 3rd octet (10.0.xx.0/24) | string | `"1"` | no |
+| vpc\_cidr | Base CIDR block for the VPC supernet | string | `"10.0.0.0/16"` | no |
+| vpc\_data\_subnet\_offset | Offset for calculating data subnets. (10.0.x.0/24) | string | `"201"` | no |
+| vpc\_private\_subnet\_offset | Offset for calculating private subnets. (10.0.x.0/24) | string | `"101"` | no |
+| vpc\_public\_subnet\_offset | Offset for calculating public subnets. (10.0.x.0/24) | string | `"1"` | no |
 | zone\_count | Amount of Availability Zones (AZs) we want to use | string | `"1"` | no |
 
 ## Outputs
